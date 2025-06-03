@@ -1,0 +1,66 @@
+:root{
+    --outline-border: 3px solid white;
+}
+
+.nav-bar{
+    /* border: 3px solid white; */
+    border: var(--outline-border);
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 15px;
+}
+
+.icon-heading{
+    /* border: var(--outline-border); */
+    border-radius: 80px;
+    box-shadow: 0px 0px 10px 0px #EFDCAB;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: #e8ebd3;
+    font-size: 25px;
+}
+
+.icon-heading *{
+    margin: 10px;
+}
+
+.filters{
+    /* border: var(--outline-border); */
+    display: flex;
+    position: absolute;
+    left: 26%;
+    bottom: 10%;
+    width: 30%;
+}
+
+.filters button{
+    border-radius: 15px;
+    border: 2px solid black; 
+    cursor: pointer;
+    background-color: #e8ebd3;
+    font-size: .99em;
+    font-weight: 500;
+    width: 100%;
+    padding: 6px;
+    margin: 6px;
+    transition: all .5s ease;
+}
+.filters button:hover{
+    box-shadow: 0px 0px 6px 0px wheat;
+    /* background-color: #443627;
+    color: white; */
+}
+
+.clicked-filter-btn {
+    background-color: #443627;
+    color: white;
+}
+
+#todo-icon{
+    border: 3px solid black;
+    width: 80px;
+    border-radius: 50px;
+}
