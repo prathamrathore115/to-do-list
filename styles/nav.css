@@ -3,13 +3,14 @@
 }
 
 .nav-bar{
-    /* border: 3px solid white; */
-    border: var(--outline-border);
+    border-bottom: var(--outline-border);
+    box-shadow: 0px 1px 8px 0px #EFDCAB;
     display: flex; 
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 15px;
+    padding: 10px 15px 30px 15px;
+    margin-bottom: 25px;
 }
 
 .icon-heading{
@@ -27,16 +28,27 @@
     margin: 10px;
 }
 
+.projects{
+    /* border: var(--outline-border); */
+    color:#e8ebd3;
+    position: absolute;
+    left: 26.5%;
+    top: 18%;
+    font-size: 25px;
+}
+
+
+
 .filters{
     /* border: var(--outline-border); */
     display: flex;
     position: absolute;
     left: 26%;
-    bottom: 10%;
+    bottom: 14%;
     width: 30%;
 }
 
-.filters button{
+.cmn-btn-css{
     border-radius: 15px;
     border: 2px solid black; 
     cursor: pointer;
@@ -48,15 +60,16 @@
     margin: 6px;
     transition: all .5s ease;
 }
+
 .filters button:hover{
     box-shadow: 0px 0px 6px 0px wheat;
-    /* background-color: #443627;
-    color: white; */
+
 }
 
 .clicked-filter-btn {
     background-color: #443627;
     color: white;
+    box-shadow: 0px 0px 6px 0px wheat;
 }
 
 #todo-icon{
