@@ -1,0 +1,95 @@
+.add-tasks-btn {
+    border-radius: 12px;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: #e8ebd3;
+    font-size: .95em;
+    font-weight: 500;
+    padding: 6px;
+    margin: 0px 6px;
+    transition: all .5s ease;
+}
+
+.add-tasks-btn:hover {
+    box-shadow: 0px 0px 6px 0px wheat;
+}
+
+.add-tasks-btn:focus {
+    color: #e8ebd3;
+    background-color: #443627;
+    box-shadow: 0px 0px 2px 0px wheat;
+    border: 2px solid #e8ebd3;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    /* border: var(--outline-border); */
+    margin: 10px 0px;
+}
+
+.display-Tasks {
+    border-radius: 15px;
+    position: relative;
+    border: 1px solid wheat;
+    display: flex;
+    padding: 15px;
+    margin: 4px;
+    justify-content: space-between;
+    background-color: #514231;
+    box-shadow: 0px 2px 8px 0px black inset;
+    color: #e8ebd3;
+}
+
+.display-Tasks div {
+    display: flex;
+}
+
+.display-Tasks div * {
+    margin: 10px;
+}
+
+.delete-tasks-btn {
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    right: 0;
+    top: 0;
+    margin: 0 !important;
+    border-radius: 12px;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: #ced0c1;
+    transition: all .5s ease;
+}
+
+.delete-tasks-btn:hover {
+    box-shadow: 0px 0px 6px 0px red;
+    background-color: #adaea6;
+}
+
+.display-duedate {
+    transform: translateX(-150%);
+}
+
+.tasks-checkbox {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.tasks-checkbox:checked {
+    background-color: #4caf50;
+    border-color: black;
+}
+.tasks-checkbox:checked::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    left: 4px;
+    top: -2px; 
+}

@@ -1,37 +1,4 @@
-.projects{
-    display: flex;
-}
-
-.projects *{
-    margin: 0px 6px;
-}
-
-.select-projects{
-    display: none;
-}
-
-.js-new-proj-btn {
-    border-radius: 15px;
-    border: 2px solid black;
-    cursor: pointer;
-    background-color: #e8ebd3;
-    font-weight: 500;
-    padding: 6px;
-    transition: all .5s ease;
-}
-
-.js-new-proj-btn:hover {
-    box-shadow: 0px 0px 6px 0px wheat;
-}
-
-.js-new-proj-btn:focus{
-    color: white;
-    background-color: #443627;
-    box-shadow: 0px 0px 6px 0px wheat;
-    border: 2px solid #e8ebd3;
-}
-
-.add-project-container {
+.add-task-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,7 +10,7 @@
     z-index: 10;
 }
 
-.add-project {
+.add-task {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -56,11 +23,11 @@
     z-index: 20;
 }
 
-.add-project * {
+.add-task * {
     margin: 10px;
 }
 
-.proj-title-inp {
+.task-name-inp {
     border: none;
     padding: 6px;
     border-radius: 12px;
@@ -70,11 +37,11 @@
     color: #F2F6D0;
 }
 
-.proj-title-inp::placeholder {
+.task-name-inp::placeholder {
     color: #F2F6D0;
 }
 
-.proj-inp-done {
+.task-inp-done {
     background-color: #877158;
     border: none;
     padding: 6px;
@@ -85,7 +52,17 @@
     cursor: pointer;
 }
 
-.proj-inp-cancel-btn {
+.task-duedate{
+    border: none;
+    padding: 6px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #877158;
+    color: #F2F6D0;
+}
+
+.task-inp-cancel-btn {
     position: fixed;
     top: 0;
     right: 0;

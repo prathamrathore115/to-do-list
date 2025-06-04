@@ -1,49 +1,54 @@
-let firstProjBtn = document.querySelector('#js-first-proj-btn');
+let newProjBtn = document.querySelector('.js-new-proj-btn');
 
 let projID = 0;
-firstProjBtn.addEventListener("click", () => {
+
+newProjBtn.addEventListener("click", () => {
     newProjectHTML();
 
-    document.querySelector("#js-proj-done").addEventListener("click", () => {
-        let projTitleName = String(document.querySelector('#js-proj-inp').value);
-        if(!projTitleName){
-            alert("please Enter The Title Name...");
-        }
-        else{
-            firstProjBtn.remove();
-
-            let projects = document.querySelector('#js-projects');
-            projects.appendChild(document.createElement('select')).classList.add('select-proj');
-            projects.appendChild(document.createElement('button')).classList.add("add-proj-btn");
-
-            let projSelect = document.querySelector(".select-proj");
-            let projSelectOptions = document.createElement('option');
-            projSelectOptions.id= `project${projID}`;
-            projSelect.appendChild(projSelectOptions);
-
-            projSelectOptions.innerHTML=`${projTitleName}`;
-            removeProjectHTML();
-        }
-    })
-
-
+    newProjectCreated();
+    
     let projCancelBtn = document.querySelector('.proj-inp-cancel-btn');
     projCancelBtn.addEventListener("click", () => {
         removeProjectHTML();
     })
 })
 
+document.querySelector('.add-proj-btn').addEventListener("click", () => {
+    newProjectHTML();
+    newProjectCreated();
+})
 
-function showProjects(){
 
+function newProjectCreated() {
+
+    document.querySelector("#js-proj-done").addEventListener("click", () => {
+         let projTitleName = String(document.querySelector('#js-proj-inp').value);
+        if (!projTitleName) {
+            alert("please Enter The Title Name...");
+        }
+        else{
+            newProjBtn.remove();
+            selectProjects();
+            storeProjects(projTitleName);
+            
+            let projSelect = document.querySelector(".select-proj");
+
+            let projSelectOptionsElement = document.createElement('option');
+            projSelectOptionsElement.id = `project${projID}`;
+            
+            projSelect.appendChild(projSelectOptionsElement);
+            
+            const selectProjectName = document.querySelector(`#project${projID}`);
+            selectProjectName.innerHTML=`${projTitleName}`;
+                
+            projID++;
+            
+            document.querySelector(".filters").style.display="flex";
+
+            removeProjectHTML();
+        }
+    });
 }
-
-
-
-
-
-
-
 
 
 function newProjectHTML() {
@@ -59,9 +64,12 @@ function newProjectHTML() {
         <button class="proj-inp-done" id="js-proj-done">Done</button>
     </div>
     `
-    
 }
 
+function selectProjects() {
+    document.querySelector(".select-projects").style.display="block"
+}
+ 
 
 function removeProjectHTML() {
     document.querySelector('.add-project-container').remove();
