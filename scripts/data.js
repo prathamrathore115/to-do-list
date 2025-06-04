@@ -1,16 +1,22 @@
-const projectsAndTasks = [];
+const ProjectsArray = [];
 
-function storeProjects(projTitleName,name,dueDate) {
+function storeProjects(projectTitle) {
+    ProjectsArray.push(
+        {
+            title: projectTitle,
+        }
+    );
 
-    projectsAndTasks.push({
-        title: `${projTitleName}`,
-        tasks: [{
-            name: name,
-            dueDate: dueDate
-        }]
-    });
+    console.log(ProjectsArray);
 
-
-    console.log(projectsAndTasks);
 }
 
+function storeTasks(taskName, taskDueDate) {
+
+    ProjectsArray[0].tasks= {
+            taskName: taskName,
+            taskDueDate: taskDueDate
+        }
+}
+
+console.log(ProjectsArray);
