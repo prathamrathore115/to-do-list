@@ -16,7 +16,6 @@ function newTaskHTML() {
             <button class="task-inp-done js-task-inp-done">Done</button>
         </div>
         `
-
         handleCancelBtn();
 
         handleDoneBtn();

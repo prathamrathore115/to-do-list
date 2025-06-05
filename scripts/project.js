@@ -2,8 +2,10 @@ let newProjBtn = document.querySelector('.js-new-proj-btn');
 
 let projID = 0;
 
-let taskName= '';
-let taskDueDate= '';
+let taskName = '';
+let taskDueDate = '';
+let currentProject = '';
+
 
 function newProjectHTML() {
     let outDiv = document.createElement('div');
@@ -23,7 +25,7 @@ newProjBtn.addEventListener("click", () => {
     newProjectHTML();
 
     newProjectCreated();
-    
+
     let projCancelBtn = document.querySelector('.proj-inp-cancel-btn');
     projCancelBtn.addEventListener("click", () => {
         removeProjectHTML();
@@ -39,46 +41,60 @@ document.querySelector('.add-proj-btn').addEventListener("click", () => {
 function newProjectCreated() {
 
     document.querySelector("#js-proj-done").addEventListener("click", () => {
-         let projTitleName = getProjectName(); 
+        let projTitleName = getProjectName();
         if (!projTitleName) {
             alert("please Enter The Title Name...");
         }
-        else{
+        else {
             newProjBtn.remove();
             storeProjects(projTitleName);
-            selectProjects();
-            
+
+            displaySelectProjects();
+
             let projSelect = document.querySelector(".select-proj");
 
             let projSelectOptionsElement = document.createElement('option');
             projSelectOptionsElement.id = `project${projID}`;
-            
-            projSelect.appendChild(projSelectOptionsElement);
-            
-            const selectProjectName = document.querySelector(`#project${projID}`);
-            selectProjectName.innerHTML=`${projTitleName}`;
-                
-            projID++;
-            
-            document.querySelector(".filters").style.display="flex";
 
+            projSelect.appendChild(projSelectOptionsElement);
+
+            const projOptionTitleName = document.querySelector(`#project${projID}`);
+            projOptionTitleName.innerHTML = `${projTitleName}`;
+
+            projID++;
+
+            document.querySelector(".filters").style.display = "flex";
+
+            // selectedProject();
+            
             removeProjectHTML();
         }
     });
 }
 
-function getProjectName(){
-     let projTitleName = String(document.querySelector('#js-proj-inp').value);
+function getProjectName() {
+    let projTitleName = String(document.querySelector('#js-proj-inp').value);
 
-     return projTitleName;
+    return projTitleName;
 }
 
 
 
-function selectProjects() {
-    document.querySelector(".select-projects").style.display="block"
+function displaySelectProjects() {
+    document.querySelector(".select-projects").style.display = "block"
 }
- 
+
+function selectedProject() {
+    currentProject = String(document.querySelector(".select-proj").value);
+
+    document.querySelector(".select-proj").addEventListener("input", (e) => {
+        currentProject = String(document.querySelector(".select-proj").value);
+
+    });
+
+    return currentProject;
+}
+
 
 function removeProjectHTML() {
     document.querySelector('.add-project-container').remove();

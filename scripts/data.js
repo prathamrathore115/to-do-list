@@ -7,16 +7,22 @@ function storeProjects(projectTitle) {
         }
     );
 
+
     console.log(ProjectsArray);
 
 }
 
 function storeTasks(taskName, taskDueDate) {
-
-    ProjectsArray[0].tasks= {
-            taskName: taskName,
-            taskDueDate: taskDueDate
+    let currentProjectTitle = selectedProject();
+    for (let i = 0; i < ProjectsArray.length; i++) {
+        if (currentProjectTitle == ProjectsArray[i].title) {
+            ProjectsArray[i].tasks = {
+                taskName: taskName,
+                taskDueDate: taskDueDate
+            }
         }
+    }
+
 }
 
-console.log(ProjectsArray);
+// console.log(ProjectsArray);
