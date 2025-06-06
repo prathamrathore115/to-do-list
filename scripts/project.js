@@ -6,6 +6,10 @@ let taskName = '';
 let taskDueDate = '';
 let currentProject = '';
 
+document.querySelector('.select-proj').addEventListener('change', function () {
+    const currentProjectIndex = this.selectedIndex;
+    updateTasksDisplay(currentProjectIndex);
+});
 
 function newProjectHTML() {
     let outDiv = document.createElement('div');
@@ -21,6 +25,7 @@ function newProjectHTML() {
     </div>
     `
 }
+
 newProjBtn.addEventListener("click", () => {
     newProjectHTML();
 
@@ -47,6 +52,7 @@ function newProjectCreated() {
         }
         else {
             newProjBtn.remove();
+            document.querySelector('.js-add-tasks-btn').style.display = "block";
             storeProjects(projTitleName);
 
             displaySelectProjects();
@@ -66,7 +72,7 @@ function newProjectCreated() {
             document.querySelector(".filters").style.display = "flex";
 
             // selectedProject();
-            
+
             removeProjectHTML();
         }
     });
@@ -85,17 +91,47 @@ function displaySelectProjects() {
 }
 
 function selectedProject() {
-    currentProject = String(document.querySelector(".select-proj").value);
-
-    document.querySelector(".select-proj").addEventListener("input", (e) => {
-        currentProject = String(document.querySelector(".select-proj").value);
-
-    });
-
-    return currentProject;
+    let currentlySelected = document.querySelector(".select-proj");
+    return currentlySelected.selectedIndex;
 }
 
 
 function removeProjectHTML() {
     document.querySelector('.add-project-container').remove();
+}
+
+function updateTasksDisplay(projectIndex) {
+
+    document.querySelectorAll('.js-tasks-container').forEach(container => {
+        container.style.display = 'none';
+    });
+
+
+    const taskContainer = document.querySelector(`#tasksOfProject${projectIndex}`);
+    if (taskContainer) {
+        taskContainer.style.display = 'block';
+    }
+
+    applyCurrentFilter(projectIndex);
+}
+
+function applyCurrentFilter(projectIndex) {
+    const activeFilter = document.querySelector('.js-filter-btn:focus') ||
+        document.querySelector('#js-filter-btn-all');
+    const filterType = activeFilter.id.split('-').pop();
+
+    const tasks = ProjectsArray[projectIndex]?.tasks || [];
+
+    tasks.forEach((task, index) => {
+        const taskElement = document.querySelector(`#task${index}OfProject${projectIndex}`);
+
+        if (taskElement) {
+            const shouldShow =
+                filterType === 'all' ||
+                (filterType === 'active' && !task.completed) ||
+                (filterType === 'completed' && task.completed);
+
+            taskElement.style.display = shouldShow ? "flex" : "none";
+        }
+    });
 }

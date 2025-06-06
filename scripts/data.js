@@ -1,28 +1,22 @@
 const ProjectsArray = [];
 
 function storeProjects(projectTitle) {
-    ProjectsArray.push(
-        {
-            title: projectTitle,
-        }
-    );
-
-
-    console.log(ProjectsArray);
-
+    ProjectsArray.push({
+        title: projectTitle,
+        tasks: []
+    });
+    // console.log(ProjectsArray);
 }
 
 function storeTasks(taskName, taskDueDate) {
-    let currentProjectTitle = selectedProject();
-    for (let i = 0; i < ProjectsArray.length; i++) {
-        if (currentProjectTitle == ProjectsArray[i].title) {
-            ProjectsArray[i].tasks = {
-                taskName: taskName,
-                taskDueDate: taskDueDate
-            }
-        }
-    }
-
+    let currentProjectIndex = selectedProject();
+    // console.log(currentProjectIndex);
+    ProjectsArray[currentProjectIndex].tasks.push({
+        taskName: taskName,
+        taskDueDate: taskDueDate,
+        completed: false
+    });
+    // console.log(ProjectsArray);
+    
+    return ProjectsArray;
 }
-
-// console.log(ProjectsArray);
