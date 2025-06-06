@@ -11,6 +11,17 @@ document.querySelector('.select-proj').addEventListener('change', function () {
     updateTasksDisplay(currentProjectIndex);
 });
 
+let buttons = document.querySelectorAll('.js-filter-btn')
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+
+        buttons.forEach(b => b.classList.remove("active"));
+
+        this.classList.add("active");
+    });
+});
+
 function newProjectHTML() {
     let outDiv = document.createElement('div');
     outDiv.classList.add("add-project-container");
