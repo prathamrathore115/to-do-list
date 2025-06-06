@@ -85,3 +85,9 @@
     width: 80px;
     border-radius: 50px;
 }
+
+#github {
+    fill: #F2F6D0;
+    cursor: pointer;
+    transition: all .5s ease;
+} 
