@@ -21,7 +21,7 @@ buttons.forEach(btn => {
 
         buttons.forEach(b => b.classList.remove("active"));
 
-        this.classList.add("active");
+        btn.classList.add("active");
     });
 });
 
