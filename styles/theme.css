@@ -5,13 +5,13 @@ body{
     z-index: -1;
 }
 
-.hello{
+.colors1{
 
     background-color: #D98324;
     background-color: #EFDCAB;
     background-color: #F2F6D0;
 }
-.hello2{
+.colors2{
 
     background-color: #0C0C0C;
     background-color: #481E14;
@@ -19,18 +19,13 @@ body{
     background-color: #F2613F;
 }
 
-#light-mode{
+/* #light-mode{
     fill: #F2F6D0;
     cursor: pointer;
     transition: all .5s ease;
-}
+} */
 
-#light-mode:hover{
+/* #light-mode:hover{
     fill: #0C0C0C;
     cursor: pointer;
-}
-
-
-
-
-/* https://colorhunt.co/palette/0c0c0c481e149b3922f2613f */
+} */
