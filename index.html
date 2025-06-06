@@ -118,15 +118,17 @@
     <script src="scripts/tasks.js"></script>
 
     <script>
- 
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize the app after all scripts are loaded
+        document.addEventListener('DOMContentLoaded', function () {
             renderSavedContent();
-
+    
+            // Load tasks for the selected project if any exists
             // if (ProjectsArray.length > 0) {
-            //     const currentProjectIndex = selectedProject();
-            //     const tasks = ProjectsArray[currentProjectIndex]?.tasks || [];
-            //     tasks.forEach((task, index) => {
-            //         displayTask(task.taskName, task.taskDueDate, currentProjectIndex, index);
+
+            //     ProjectsArray.forEach((project, index) => {
+            //         project.tasks.forEach((task,taskIndex) => {
+            //             displayTask(task.taskName,task.taskDueDate,index,taskIndex );
+            //         })
             //     });
             // }
         });

@@ -74,10 +74,10 @@ function removeTaskHTML() {
 
 function displayTask(currentProjectTaskName, currentProjectTaskDueDate, currentProjectIndex, taskNumber) {
     let taskMainContainer = document.querySelector('.js-main');
-
+    
     let taskContainer = document.querySelector(`#tasksOfProject${currentProjectIndex}`);
-
     if (!taskContainer) {
+
         taskContainer = document.createElement('div');
         taskContainer.classList.add('js-tasks-container');
         taskContainer.id = `tasksOfProject${currentProjectIndex}`;
@@ -110,7 +110,7 @@ function displayTask(currentProjectTaskName, currentProjectTaskDueDate, currentP
             </button>
         </div>
     `;
-
+    
     taskContainer.appendChild(taskElement);
 
     setupTaskEvents();
@@ -125,38 +125,30 @@ function setupTaskEvents() {
         btn.addEventListener('click', () => {
             const taskId = btn.closest('.display-Tasks').id;
             const [projectIndex, taskIndex] = getIndexesByTaskId(taskId);
-            
-            if(ProjectsArray[projectIndex]?.tasks[taskIndex]){
 
-                ProjectsArray[projectIndex].tasks.splice(taskIndex, 1);
-                saveTOLocalStorage();
-            }
-            
+            deleteTask(projectIndex, taskIndex);
+
             btn.closest('.display-Tasks').remove();
         });
     });
-    
+
     // Task checkbox
 
     document.querySelectorAll('.tasks-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
+        checkbox.addEventListener('change', function () {
             const taskId = this.closest('.display-Tasks').id;
             const [projectIndex, taskIndex] = getIndexesByTaskId(taskId);
-            
-            if(ProjectsArray[projectIndex]?.tasks[taskIndex]){
 
-                ProjectsArray[projectIndex].tasks[taskIndex].completed = this.checked;
-                saveTOLocalStorage();
-            }
-            
-            this.closest('.display-Tasks').style.backgroundColor = this.checked ? "#382c1f" : "#514231";
+            updateTaskStatus(projectIndex, taskIndex, this.checked);
+
+            this.closest('.display-Tasks').style.background = this.checked ? "#382c1f" : "#514231";
         });
     });
 }
 
 function getIndexesByTaskId(taskId) {
     let splitsId = taskId.split("OfProject");
-    let taskIndex = parseInt(splitsId[0].replace("task",""));
+    let taskIndex = parseInt(splitsId[0].replace("task", ""));
     let projectIndex = parseInt(splitsId[1]);
 
     return [projectIndex, taskIndex];
@@ -164,7 +156,7 @@ function getIndexesByTaskId(taskId) {
 
 function setupFilters() {
     document.querySelectorAll('.js-filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             const currentProjectIndex = selectedProject();
             applyCurrentFilter(currentProjectIndex);
         });

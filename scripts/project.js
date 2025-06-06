@@ -2,6 +2,7 @@ window.projID = window.projID || 0;
 
 let newProjBtn = document.querySelector('.js-new-proj-btn');
 
+
 let taskName = '';
 let taskDueDate = '';
 let currentProject = '';
@@ -16,7 +17,7 @@ selected.addEventListener('change', () => {
 let buttons = document.querySelectorAll('.js-filter-btn')
 
 buttons.forEach(btn => {
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", () => {
 
         buttons.forEach(b => b.classList.remove("active"));
 
@@ -57,7 +58,7 @@ document.querySelector('.add-proj-btn').addEventListener("click", () => {
     let projCancelBtn = document.querySelector('.proj-inp-cancel-btn');
     projCancelBtn.addEventListener("click", () => {
         removeProjectHTML();
-    });
+    })
 })
 
 
@@ -86,7 +87,7 @@ function newProjectCreated() {
             projOptionTitleName.innerHTML = `${projTitleName}`;
 
             projID++;
-            saveTOLocalStorage();
+            saveToLocalStorage();
 
             document.querySelector(".filters").style.display = "flex";
 
