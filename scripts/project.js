@@ -1,13 +1,15 @@
-let newProjBtn = document.querySelector('.js-new-proj-btn');
+window.projID = window.projID || 0;
 
-let projID = 0;
+let newProjBtn = document.querySelector('.js-new-proj-btn');
 
 let taskName = '';
 let taskDueDate = '';
 let currentProject = '';
 
-document.querySelector('.select-proj').addEventListener('change', function () {
-    const currentProjectIndex = this.selectedIndex;
+const selected = document.querySelector('.select-proj');
+
+selected.addEventListener('change', () => {
+    const currentProjectIndex = selected.selectedIndex;
     updateTasksDisplay(currentProjectIndex);
 });
 
@@ -51,6 +53,11 @@ newProjBtn.addEventListener("click", () => {
 document.querySelector('.add-proj-btn').addEventListener("click", () => {
     newProjectHTML();
     newProjectCreated();
+
+    let projCancelBtn = document.querySelector('.proj-inp-cancel-btn');
+    projCancelBtn.addEventListener("click", () => {
+        removeProjectHTML();
+    });
 })
 
 
@@ -79,6 +86,7 @@ function newProjectCreated() {
             projOptionTitleName.innerHTML = `${projTitleName}`;
 
             projID++;
+            saveTOLocalStorage();
 
             document.querySelector(".filters").style.display = "flex";
 
@@ -114,14 +122,20 @@ function removeProjectHTML() {
 function updateTasksDisplay(projectIndex) {
 
     document.querySelectorAll('.js-tasks-container').forEach(container => {
-        container.style.display = 'none';
+        container.remove();
     });
 
+    const tasks = ProjectsArray[projectIndex]?.tasks || [];
+    const taskMainContainer = document.querySelector('.js-main');
 
-    const taskContainer = document.querySelector(`#tasksOfProject${projectIndex}`);
-    if (taskContainer) {
-        taskContainer.style.display = 'block';
-    }
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('js-tasks-container');
+    taskContainer.id = `tasksOfProject${projectIndex}`;
+    taskMainContainer.appendChild(taskContainer);
+
+    tasks.forEach((task, index) => {
+        displayTask(task.taskName, task.taskDueDate, projectIndex, index);
+    });
 
     applyCurrentFilter(projectIndex);
 }

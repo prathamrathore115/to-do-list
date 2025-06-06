@@ -92,6 +92,7 @@ function displayTask(currentProjectTaskName, currentProjectTaskDueDate, currentP
     let taskElement = document.createElement('div');
     taskElement.classList.add('display-Tasks');
     taskElement.id = `task${taskNumber}OfProject${currentProjectIndex}`;
+    taskElement.style.backgroundColor = ProjectsArray[currentProjectIndex].tasks[taskNumber].completed ? "#382c1f" : "#514231";
     taskElement.innerHTML = `
         <div>
             <input type="checkbox" name="" class="tasks-checkbox" id="task${taskNumber}OfProject${currentProjectIndex}-checkbox" 
@@ -108,8 +109,10 @@ function displayTask(currentProjectTaskName, currentProjectTaskDueDate, currentP
                 </svg>
             </button>
         </div>
-    `
+    `;
+
     taskContainer.appendChild(taskElement);
+
     setupTaskEvents();
 
     applyCurrentFilter(currentProjectIndex);
@@ -123,8 +126,11 @@ function setupTaskEvents() {
             const taskId = btn.closest('.display-Tasks').id;
             const [projectIndex, taskIndex] = getIndexesByTaskId(taskId);
             
-            // Remove from data
-            ProjectsArray[projectIndex].tasks.splice(taskIndex, 1);
+            if(ProjectsArray[projectIndex]?.tasks[taskIndex]){
+
+                ProjectsArray[projectIndex].tasks.splice(taskIndex, 1);
+                saveTOLocalStorage();
+            }
             
             btn.closest('.display-Tasks').remove();
         });
@@ -133,14 +139,17 @@ function setupTaskEvents() {
     // Task checkbox
 
     document.querySelectorAll('.tasks-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
+        checkbox.addEventListener('change', () => {
             const taskId = this.closest('.display-Tasks').id;
             const [projectIndex, taskIndex] = getIndexesByTaskId(taskId);
             
-            // Update status inm data
-            ProjectsArray[projectIndex].tasks[taskIndex].completed = this.checked;
+            if(ProjectsArray[projectIndex]?.tasks[taskIndex]){
+
+                ProjectsArray[projectIndex].tasks[taskIndex].completed = this.checked;
+                saveTOLocalStorage();
+            }
             
-            this.closest('.display-Tasks').style.background = this.checked ? "#382c1f" : "#514231";
+            this.closest('.display-Tasks').style.backgroundColor = this.checked ? "#382c1f" : "#514231";
         });
     });
 }
