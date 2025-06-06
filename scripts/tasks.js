@@ -120,13 +120,13 @@ function setupTaskEvents() {
 
     document.querySelectorAll('.delete-tasks-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const taskId = this.closest('.display-Tasks').id;
+            const taskId = btn.closest('.display-Tasks').id;
             const [projectIndex, taskIndex] = getIndexesByTaskId(taskId);
             
             // Remove from data
             ProjectsArray[projectIndex].tasks.splice(taskIndex, 1);
             
-            this.closest('.display-Tasks').remove();
+            btn.closest('.display-Tasks').remove();
         });
     });
     
